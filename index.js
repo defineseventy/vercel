@@ -1,45 +1,32 @@
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://P1935404:I220009@cluster0.mucnfpq.mongodb.net/?retryWrites=true&w=majority";
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(uri, {
-    serverApi: {
-        version: ServerApiVersion.v1,
-        strict: true,
-        deprecationErrors: true,
-    }
+const express = require("express");
+const app = express();
+
+// const path = require("path");
+const logger = require("morgan");
+const cors = require("cors");
+
+app.use(logger("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cors());
+
+app.get("/api/test", (req, res) => {
+  res.send("test");
 });
 
-const Express = require("express");
-const BodyParser = require("body-parser");
+// app.use(express.static(path.join(__dirname, "./frontend/build")));
 
-const app = Express();
+// app.get("*", function (_, res) {
+//   res.sendFile(
+//     path.join(__dirname, "./frontend/build/index.html"),
+//     function (err) {
+//       if (err) {
+//         res.status(500).send(err);
+//       }
+    // });
+// });
 
-app.use(BodyParser.json());
+const port = process.env.PORT || 5000;
+app.listen(port, () => console.log(`Server Running on port ${port}`));
 
-var getDepression, createDepression;
-
-app.get("/depression", async (request, response) => {
-    try {
-        const deal = await getDepression.findOne({ "date": "2022-10-07" });
-        response.send(deal || {});
-    } catch (error) {
-        response.status(500).send({ "message": error.message });
-    }
-});
-
-app.post("/depression", async (request, response) => {
-    try {
-        if(!request.body) {
-            throw { "message": "The request body is missing!" };
-        }
-        const receipt = await createDepression.insertOne(
-            { 
-                "scene": request.body.scene,
-                "opt": request.body.opt
-            }
-        );
-        response.status(200).send(receipt, "OK");
-    } catch (error) {
-        response.status(500).send({ "message": error.message });
-    }
-});
+module.exports = app;
