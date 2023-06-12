@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password">
+                <!-- An element to toggle between password visibility -->
+                <input type="checkbox" onclick="myFunction()">Show Password
+            </div>
+            <button type="submit" class="btn btn-outline-success">Login</button>
+        </form>
+    </div>
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script>
+    var baseUrl = "http://localhost:5000";
+
+    function myFunction() {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+
+    $("#login-form").submit((event) => {
+        // prevent page reload
+        event.preventDefault();
+
+        const username = $("#username").val();
+        const password = $("#password").val();
+        const requestBody = {
+            username: username,
+            password: password
+        };
+
+        axios.post(`${baseUrl}/login/`, requestBody)
+            .then((response) => {
+                console.log(response.data)
+                alert("Welcome "+response.data.username)
+            })
+            .catch((error) => {
+                console.log("here")
+                console.log(error);
+            });
+    });
+</script>
+
+</html>
