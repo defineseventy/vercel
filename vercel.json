@@ -3,7 +3,7 @@
     "rewrites": [
         {
             "source": "/BED/(.*)",
-            "destination": "BED/server.js"
+            "destination": "/BED"
         }
     ]
 }
