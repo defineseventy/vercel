@@ -8,7 +8,7 @@
     ],
     "builds": [
         {
-          "src": "./BED/server.js",
+          "source": "./BED/server.js",
           "use": "@vercel/node"
         }
       ]
