@@ -1,7 +1,11 @@
+// bring the .env over
+require('dotenv').config({ path: ".env.development" });
+
 // bring app.js over
 const app = require("./controller/app");
 
 // Initialize server
-app.listen(5000, () => {
-  console.log("Running on port 5000.");
+const PORT = process.env.PORT;
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}`);
 });
