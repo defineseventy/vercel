@@ -5,11 +5,5 @@
             "source": "/(.*)",
             "destination": "/BED/server.js"
         }
-    ],
-    "builds": [
-        {
-          "source": "./BED/server.js",
-          "use": "@vercel/node"
-        }
-      ]
+    ]
 }
