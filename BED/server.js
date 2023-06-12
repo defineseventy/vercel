@@ -1,13 +1,5 @@
-// Add Express
-const express = require("express");
-
-// Initialize Express
-const app = express();
-
-// Create GET request
-app.get("/", (req, res) => {
-  res.send("Express on Vercel");
-});
+// bring app.js over
+import app from "./controller/app";
 
 // Initialize server
 app.listen(5000, () => {
