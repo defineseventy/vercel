@@ -2,8 +2,8 @@
     "version": 2,
     "rewrites": [
         {
-            "source": "BED/(.*)",
-            "destination": "./server.js"
+            "source": "/BED/(.*)",
+            "destination": "BED/server.js"
         }
     ]
 }
