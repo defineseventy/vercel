@@ -29,7 +29,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script>
-    var baseUrl = "http://localhost:5000";
+    var baseUrl = "https://vercel-mu-red.vercel.app";
 
     function myFunction() {
         var x = document.getElementById("password");
@@ -54,7 +54,7 @@
         axios.post(`${baseUrl}/login/`, requestBody)
             .then((response) => {
                 console.log(response.data)
-                alert("Welcome "+response.data.username)
+                alert("Welcome "+response.data)
             })
             .catch((error) => {
                 console.log("here")
